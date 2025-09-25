@@ -1,0 +1,60 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/OPIDoR/DMPOPIDoR:
+      branch: main
+      repo: https://github.com/OPIDoR/DMPOPIDoR.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/OPIDoR/DMPOPIDoR git:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-olivine-bordeaux.sh
+        container: qc.acc_scanty-beige-armadillo
+  QC.Doc:
+    repos:
+      github.com/OPIDoR/DMPOPIDoR find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.queasy-gold-ant.sh
+        container: qc.doc_greasy-champagne-bonobo
+      github.com/OPIDoR/DMPOPIDoR git:
+        commands:
+        - /usr/bin/env sh .sqa/script.woozy-cornflower-chinook.sh
+        container: qc.doc_paltry-red-fox
+      github.com/OPIDoR/DMPOPIDoR markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-tangerine-ant.sh
+        container: qc.doc_sleazy-rose-termite
+  QC.Lic:
+    repos:
+      github.com/OPIDoR/DMPOPIDoR licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-amber-wildebeest.sh
+        container: qc.lic_lovely-thistle-turtle
+  QC.Sty:
+    repos:
+      github.com/OPIDoR/DMPOPIDoR hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-cobalt-labradoodle.sh
+        container: qc.sty_nippy-goldenrod-bird
+      github.com/OPIDoR/DMPOPIDoR jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-taupe-sloth.sh
+        container: qc.sty_goopy-magnolia-bongo
+      github.com/OPIDoR/DMPOPIDoR rubocop:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-silver-jellyfish.sh
+        container: qc.sty_pasty-amber-ostrich
+  QC.Ver:
+    repos:
+      github.com/OPIDoR/DMPOPIDoR get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gloppy-chartreuse-tapir.sh
+        container: qc.ver_scanty-carmine-mouse
+timeout: 5400
